@@ -1,53 +1,57 @@
 const chat = document.getElementById("chat");
 
-function ajouterMessage(classe, texte){
+function addMessage(text, className){
+
     const div = document.createElement("div");
-    div.className = classe;
-    div.innerHTML = texte;
+
+    div.classList.add("message");
+    div.classList.add(className);
+
+    div.innerHTML = text;
+
     chat.appendChild(div);
+
     chat.scrollTop = chat.scrollHeight;
 }
 
-function envoyerMessage(){
+function sendMessage(){
 
-    const input = document.getElementById("message");
-    const texte = input.value.trim();
+    const input = document.getElementById("messageInput");
 
-    if(texte === "") return;
+    const text = input.value.trim();
 
-    ajouterMessage("user", "Vous: " + texte);
+    if(!text) return;
 
-    analyserFrancais(texte);
+    addMessage(text,"user");
+
+    checkFrench(text);
 
     input.value = "";
 }
 
-function analyserFrancais(message){
+function checkFrench(text){
 
-    let reponse = "";
+    let response =
+    "Très bien ! Continue la conversation.";
+
     let correction = "";
 
-    if(message.toLowerCase() === "bonjour"){
-        reponse = "Bonjour ! Comment ça va ?";
+    if(text.includes("je suis bien")){
+        correction =
+        "❌ Je suis bien<br>✅ Je vais bien";
     }
 
-    else if(message.toLowerCase() === "je suis bien"){
-        correction = "On dit : 'Je vais bien'.";
-        reponse = "Très bien !";
+    if(text.includes("je aime")){
+        correction =
+        "❌ Je aime<br>✅ J'aime";
     }
 
-    else if(message.includes("je aime")){
-        correction = "Correction : 'J'aime'.";
-        reponse = "Excellent ! Continue.";
-    }
-
-    else{
-        reponse = "Merci pour votre message.";
-    }
-
-    ajouterMessage("bot", "Professeur: " + reponse);
+    addMessage(response,"bot");
 
     if(correction){
-        ajouterMessage("correction", "Correction: " + correction);
+        addMessage(
+            "<b>Correção:</b><br>"+correction,
+            "correction"
+        );
     }
 }
