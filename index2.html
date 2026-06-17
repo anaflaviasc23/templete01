@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Chat Français</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>French Trainer</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="chat-container">
-        <h2>Pratique du Français</h2>
+<div class="app">
 
-        <div id="chat"></div>
+    <header>
+        🇫🇷 French Trainer
+    </header>
 
-        <input type="text" id="message" placeholder="Écrivez en français...">
-        <button onclick="envoyerMessage()">Envoyer</button>
-    </div>
+    <main id="chat">
 
-    <script src="script.js"></script>
+        <div class="bot message">
+            Bonjour Ana ! Comment ça va aujourd'hui ?
+        </div>
+
+    </main>
+
+    <footer>
+        <input
+            type="text"
+            id="messageInput"
+            placeholder="Digite em francês..."
+        >
+
+        <button onclick="sendMessage()">
+            ➤
+        </button>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
